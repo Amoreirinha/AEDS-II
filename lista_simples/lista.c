@@ -40,7 +40,8 @@ void inserir_inicio(int elemento)
 
 void inserirPosicao(int valor, int pos)
 {
-	if (pos < 1) {
+	if (pos < 1)
+	{
 		printf("\n Posicao inválida");
 		return;
 	}
@@ -49,7 +50,8 @@ void inserirPosicao(int valor, int pos)
 	tmp1->data = valor;
 	tmp1->next = NULL;
 
-	if (pos == 1) {
+	if (pos == 1)
+	{
 		tmp1->next = p;
 		p = tmp1;
 		return;
@@ -57,12 +59,14 @@ void inserirPosicao(int valor, int pos)
 
 	tmp = p;
 	int i = 1;
-	while (tmp != NULL && i < pos - 1) {
+	while (tmp != NULL && i < pos - 1)
+	{
 		tmp = tmp->next;
 		i++;
 	}
 
-	if (tmp == NULL) {
+	if (tmp == NULL)
+	{
 		printf("\n Posicao inválida");
 		free(tmp1);
 		return;
@@ -141,36 +145,41 @@ void apagar_fim()
 	}
 }
 
-void removerPosicao(int pos){
+void removerPosicao(int pos)
+{
 	tmp = p;
 	pos--;
 	struct node *pre = NULL;
-    int i = 0;
+	int i = 0;
 
-    if (p == NULL) {
-        printf("\n Nenhum elemento deletado ");
-        return;
-    }
+	if (p == NULL)
+	{
+		printf("\n Nenhum elemento deletado ");
+		return;
+	}
 
-    if (pos == 0) {
-        p = tmp->next;
-        free(tmp);
-        return;
-    }
+	if (pos == 0)
+	{
+		p = tmp->next;
+		free(tmp);
+		return;
+	}
 
-    while (tmp != NULL && i < pos) {
-        pre = tmp;
-        tmp = tmp->next;
-        i++;
-    }
+	while (tmp != NULL && i < pos)
+	{
+		pre = tmp;
+		tmp = tmp->next;
+		i++;
+	}
 
-    if (tmp == NULL) {
-        printf("\n Posicao inválida");
-        return;
-    }
+	if (tmp == NULL)
+	{
+		printf("\n Posicao inválida");
+		return;
+	}
 
-    pre->next = tmp->next;
-    free(tmp);
+	pre->next = tmp->next;
+	free(tmp);
 }
 
 bool ehVazia()
@@ -232,27 +241,32 @@ int obter_ultimo(void)
 	}
 }
 
-int obterPosicao(int pos){
+int obterPosicao(int pos)
+{
 	tmp = p;
 	pos--;
-	int i=0;
+	int i = 0;
 
-	if(pos < 0) {
+	if (pos < 0)
+	{
 		printf("\n Posicao inválida");
 		return (0);
 	}
 
-	if(p == NULL) {
+	if (p == NULL)
+	{
 		printf("\n Nenhum elemento encontrado ");
 		return (0);
 	}
 
-	while(tmp != NULL && i < pos){
+	while (tmp != NULL && i < pos)
+	{
 		tmp = tmp->next;
 		i++;
 	}
 
-	if(tmp == NULL) {
+	if (tmp == NULL)
+	{
 		printf("\n Posicao inválida");
 		return (0);
 	}
