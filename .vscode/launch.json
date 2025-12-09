@@ -2,14 +2,35 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Debug C Program",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/output/main",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build",
+      "miDebuggerPath": "/usr/bin/gdb"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/joaquim-pedro/AEDS-II/alocacao_encadeada_ordenada",
-      "program": "/home/joaquim-pedro/AEDS-II/alocacao_encadeada_ordenada/build/Debug/outDebug",
+      "cwd": "/home/joaquim-pedro/AEDS-II/tabela_hash",
+      "program": "/home/joaquim-pedro/AEDS-II/tabela_hash/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
