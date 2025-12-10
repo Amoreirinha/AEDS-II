@@ -9,14 +9,17 @@ extern "C" {
 }
 #endif
 
+// Exemplo de tabela hash - Busca de estudantes pela matrícula
+// struct dos estudantes (constituído por um inteiro para matrícula e um vetor string para nome)
 typedef struct e{
     int matricula;
     char nome[100];
 } estudante;
 
+//struct da tabela (constituída pela quantidade ocupada da tabela, seu tamanho total e um ponteiro de ponteiro de struct estudante)
 typedef struct h{
     int qtd, TABELA_SIZE;
-    estudante ** estudantes;
+    estudante ** estudantes; // Esse ponteiro de ponteiro será usado para criar um vetor de ponteiros de estudantes.
 } hash;
 
 hash * criar_tabela(int Tabela_size);
