@@ -65,7 +65,7 @@ void merge(int *array, int posi_inicio, int meio, int posi_fim){
     if(array_temp != NULL){
         // loop para preencher vetor temporário
         for(int i = 0; i < tamanho; i++){
-            //verifica se as subdivisões não estão já no final
+            //verifica se as subdivisões não estão já no final. Final delas é quando são diferentes de 0.
             if(fim1 == 0 && fim2 == 0){ // pode-se usar também (!fim1 && !fim2), ambos são iguais.
                 //faz a comparação de qual é o maior entre os valores das subdiviões e já ordena no vetor temporário
                 if(array[array_p1] < array[array_p2]){
@@ -161,7 +161,7 @@ int quicky_partition(int array[], int posi_inicio, int posi_fim) {
     
     // Move o pivô para depois dos elementos menores e retorna sua posição
     swap(&array[i + 1], &array[posi_fim]);  
-    return i + 1;
+    return i + 1; // retorna a posição do pivo
 }
 
 /******************************************************************************
@@ -229,9 +229,7 @@ void heapify(int array[], int TAM, int i){
     // Se o maior não é mais o nó raiz
     if (maior != i) {
         // Troca os valores
-        int temp = array[i];
-        array[i] = array[maior];
-        array[maior] = temp;
+        swap(&array[i],&array[maior]);
 
         // Recursivamente ajusta a subárvore afetada
         heapify(array, TAM, maior);
@@ -280,9 +278,7 @@ void heap_sort(int array[], int TAM){
     for (int i = TAM - 1; i > 0; i--) {
 
         // Move a raiz (maior elemento) para o final
-        int temp = array[0];
-        array[0] = array[i];
-        array[i] = temp;
+        swap(&array[0],&array[i]);
 
         // Reconstroi o heap no vetor reduzido (tamanho i)
         heapify(array, i, 0);
