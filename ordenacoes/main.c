@@ -11,7 +11,7 @@ void print_array(int array[], int tam){
     printf("\n\n");
 }
 
-// Função swap utilizada por bubble sort e quicky sort
+// Função swap utilizada por bubble sort, quicky sort e heap sort
 void swap(int *x, int *y){
     int temp = *x;
     *x = *y;
