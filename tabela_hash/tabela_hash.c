@@ -204,8 +204,9 @@ int insere_hash_end_aberto(hash * ha, estudante * estud) {
     //Loop para inserção de um valor considerando a possibilidade de colisões
     //Na primeira interação, como i = 0, nenhuma ação de colisão é tomada (como se fosse um sucesso de primeira)
     //Caso não seja um sucesso de primeira, i vai sendo incrementado, "permitindo" a atuação da ação de tratamento de colisão até que se encontre um lugar vazio ou i atinja o tamanho da tabela.
-	for (i = 0; i < ha->TABELA_SIZE; i++) {
-		posi = duplo_hash(posi, estud->matricula, i, ha->TABELA_SIZE);
+    for (i = 0; i < ha->TABELA_SIZE; i++) {
+        // desse jeito o cáculo é acumulativo, o qe não é muito usual/correto
+		posi = duplo_hash(posi, estud->matricula, i, ha->TABELA_SIZE); 
         //posi = sondagem_linear(posi, i, ha->TABELA_SIZE);
         //posi = sondagem_quadratica(posi, i, ha->TABELA_SIZE);
 		if (ha->estudantes[posi] == NULL) {
@@ -213,6 +214,17 @@ int insere_hash_end_aberto(hash * ha, estudante * estud) {
 			ha->qtd++;
 			return 1;
 		}
+
+        /*preferível a utilização do método abaixo:
+        int nova_posi = duplo_hash(posi, estud->matricula, i, ha->TABELA_SIZE); 
+        //int nova_posi = sondagem_linear(posi, i, ha->TABELA_SIZE);
+        //int nova_posi = sondagem_quadratica(posi, i, ha->TABELA_SIZE);
+		if (ha->estudantes[nova_posi] == NULL) {
+			ha->estudantes[nova_posi] = estud;
+			ha->qtd++;
+			return 1;
+		}
+        */
 	}
 	return 0;
 }
@@ -236,6 +248,7 @@ char* busca_hash_end_aberto(hash * ha, int matricula) {
     //                        - se não, incrementa i e continua agora com tratamento de colisões
     //Caso não seja um sucesso de primeira, i vai sendo incrementado, "permitindo" a atuação da ação de tratamento de colisão até que se encontre a informação buscada ou i atinja o tamanho da tabela.
 	for (i = 0; i < ha->TABELA_SIZE; i++) {
+        // desse jeito o cáculo é acumulativo, o qe não é muito usual/correto
 		posi = duplo_hash(posi, matricula, i, ha->TABELA_SIZE);
         //posi = sondagem_linear(posi, i, ha->TABELA_SIZE);
         //posi = sondagem_quadratica(posi, i, ha->TABELA_SIZE);
@@ -244,6 +257,16 @@ char* busca_hash_end_aberto(hash * ha, int matricula) {
 		} else if (ha->estudantes[posi]->matricula == matricula) {
 			return &(ha->estudantes[posi]->nome[0]);
 		}
+        /*preferível a utilização do método abaixo:
+        int nova_posi = duplo_hash(posi, estud->matricula, i, ha->TABELA_SIZE);
+        //int nova_posi = sondagem_linear(posi, i, ha->TABELA_SIZE);
+        //int nova_posi = sondagem_quadratica(posi, i, ha->TABELA_SIZE);
+		if (ha->estudantes[nova_posi] == NULL) {
+			return NULL;
+		} else if (ha->estudantes[nova_posi]->matricula == matricula) {
+			return &(ha->estudantes[nova_posi]->nome[0]);
+		}
+        */
 	}
 	return NULL;
 }
