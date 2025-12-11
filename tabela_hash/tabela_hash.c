@@ -84,7 +84,7 @@ char* busca_hash_sem_colisao(hash * ha, int matricula) {
     // Verifica se a posição está vazia (ha->estudantes[posi] == NULL). Se sim, retorna NULL.
     if(ha->estudantes[posi] == NULL) return NULL;
 
-    // No caso da posição não estar vazia, retorna o endereço string do nom e do estudante que está nesta posição.
+    // No caso da posição não estar vazia, retorna o endereço string do nome do estudante que está nesta posição.
 	return &(ha->estudantes[posi]->nome[0]);
 }
 
@@ -205,7 +205,7 @@ int insere_hash_end_aberto(hash * ha, estudante * estud) {
     //Na primeira interação, como i = 0, nenhuma ação de colisão é tomada (como se fosse um sucesso de primeira)
     //Caso não seja um sucesso de primeira, i vai sendo incrementado, "permitindo" a atuação da ação de tratamento de colisão até que se encontre um lugar vazio ou i atinja o tamanho da tabela.
     for (i = 0; i < ha->TABELA_SIZE; i++) {
-        // desse jeito o cáculo é acumulativo, o qe não é muito usual/correto
+        // desse jeito o cáculo é acumulativo, o que não é muito usual/correto
 		posi = duplo_hash(posi, estud->matricula, i, ha->TABELA_SIZE); 
         //posi = sondagem_linear(posi, i, ha->TABELA_SIZE);
         //posi = sondagem_quadratica(posi, i, ha->TABELA_SIZE);
@@ -240,7 +240,7 @@ char* busca_hash_end_aberto(hash * ha, int matricula) {
 
     //Loop para a busca de um valor considerando a possibilidade de colisões
     //Na primeira interação, como i = 0, nenhuma ação de colisão é tomada (como se fosse um sucesso de primeira).
-    // Então é verificado se o há algo naquele índice:
+    // Então é verificado se há algo naquele índice:
     //      - se não houver (ha->estudantes[posi] == NULL) retorna NULL
     //      - se houver:
     //                  - verifica se é a informação requerida (ha->estudantes[posi]->matricula == matricula):
